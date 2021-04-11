@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Alert, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, Alert, ActivityIndicator, StatusBar } from 'react-native';
 import * as Location from 'expo-location'
 
 import Run from './components/Run'
@@ -23,18 +23,23 @@ export default function App() {
     })()
   }, [])
 
-  if (!ready) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size='large' color='white' />
-      </View>
-    )
-  } else {
-
-    return (
-      <Run distance={200} location={location} />
-    );
-  }
+  return (
+    <React.Fragment>
+      <StatusBar barStyle='light-content' />
+      {
+        ready && (
+          <Run distance={200} location={location} />
+        )
+      }
+      {
+        !ready && (
+          <View style={styles.container}>
+            <ActivityIndicator size='large' color='white' />
+          </View>
+        )
+      }
+    </React.Fragment>
+  )
 }
 
 const styles = StyleSheet.create({
