@@ -6,7 +6,8 @@ import * as Location from 'expo-location'
 import * as Turf from '@turf/turf'
 
 import Monitor from './Monitor'
-import Pin from './Pin'
+import Pin from './Icons/Pin'
+import MapSigns from './Icons/MapSigns'
 
 export default function Run({ location }) {
     const [position, setPosition] = useState([])
@@ -77,7 +78,7 @@ export default function Run({ location }) {
                         coordinate={currentPosition.coords}
                         anchor={{ x: 0.5, y: 0.5 }}
                     >
-                        <Pin />
+                        <MapSigns />
                     </Marker>
                 }
             </MapView>
